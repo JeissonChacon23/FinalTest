@@ -19,4 +19,9 @@ public class PokemonController {
         }
         return null;
     }
+    @PostMapping
+    public Pokemon postPokemons(@RequestBody Pokemon pokemon) {
+        pokemonRepository.save(pokemon);
+        return pokemon;
+    }
 }
