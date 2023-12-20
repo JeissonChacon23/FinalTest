@@ -1,4 +1,5 @@
 package com.example.finaltest.controller;
+import com.example.finaltest.entities.Entrenador;
 import com.example.finaltest.entities.Pokemon;
 import com.example.finaltest.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class PokemonController {
     public Pokemon postPokemons(@RequestBody Pokemon pokemon) {
         pokemonRepository.save(pokemon);
         return pokemon;
+    }
+    @GetMapping("/{id}")
+    public Pokemon getPokemonsbyEntrenador(@PathVariable Integer idEntrenador) {
+        Optional<Pokemon> pokemon = pokemonRepository.findById(idEntrenador);
+        if (pokemon.isPresent()) {
+            return pokemon.get();
+        }
+        return null;
     }
 }
